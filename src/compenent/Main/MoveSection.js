@@ -12,6 +12,12 @@ const MoveSection = (props) => {
 
   const [typemove, settypemove] = useState("popularity.desc")
 
+
+
+  const time = new Date()
+  console.log("time:", time.getFullYear())
+  const [year, setyear] = useState(`${time.getFullYear()}`)
+
   useEffect(() => {
 
     Getgenerslist()
@@ -26,9 +32,6 @@ const MoveSection = (props) => {
   }
 
 
-
-  console.log("id", GenresId)
-  console.log("type:", typemove)
 
   return (
 
@@ -53,11 +56,11 @@ const MoveSection = (props) => {
 
                 return (
 
-                  <option value={value.id} key={value.id}
+                  <option value={value.id} key={value.id}>
+                    {value.name}
 
 
-
-                  >{value.name}</option>
+                  </option>
 
                 )
               })
@@ -69,13 +72,13 @@ const MoveSection = (props) => {
 
           </select>
 
-          <select name="year" className="year">
-            <option value="all years">All the years</option>
-            <option value="2022">2022</option>
-            <option value="2020-2021">2020-2021</option>
-            <option value="2010-2019">2010-2019</option>
-            <option value="2000-2009">2000-2009</option>
-            <option value="1980-1999">1980-1999</option>
+          <select name="year" className="year" onChange={(event) => { setyear(event.target.value) }}>
+
+            <option value={time.getFullYear()}>Time - {time.getFullYear()}</option>
+            <option value={time.getFullYear() - 1}>Time - {time.getFullYear() - 1}</option>
+            <option value={time.getFullYear() - 2}>Time - {time.getFullYear() - 2}</option>
+            <option value={time.getFullYear() - 3}>Time - {time.getFullYear() - 3}</option>
+            <option value={time.getFullYear() - 4}>Time - {time.getFullYear() - 4}</option>
           </select>
 
         </div>
@@ -125,7 +128,7 @@ const MoveSection = (props) => {
 
       {/* <Outlet /> */}
 
-      <Genresmove GenresId={GenresId} typemove={typemove} />
+      <Genresmove GenresId={GenresId} typemove={typemove} year={year} />
 
     </section>
   )

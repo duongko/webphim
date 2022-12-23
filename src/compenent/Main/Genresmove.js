@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { GetDiscovery } from "../../apiservice/api"
 
 const Genresmove = (props) => {
-    const { GenresId, typemove } = props
+    const { GenresId, typemove, year } = props
 
     const [Move, setmove] = useState()
 
@@ -13,7 +13,7 @@ const Genresmove = (props) => {
         GetGenresmove()
 
 
-    }, [GenresId, typemove])
+    }, [GenresId, typemove, year])
 
 
 
@@ -22,7 +22,7 @@ const Genresmove = (props) => {
     const GetGenresmove = async () => {
 
 
-        let res = await GetDiscovery(GenresId, typemove)
+        let res = await GetDiscovery(GenresId, typemove, year)
 
         console.log("res discovery:", res)
         setmove(res.data.results)

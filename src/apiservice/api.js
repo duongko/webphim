@@ -21,9 +21,9 @@ const Getgenres = () => {
     return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${Api_key}&language=en-US`)
 }
 
-const GetDiscovery = (GenresId, typemove) => {
+const GetDiscovery = (GenresId, typemove, year) => {
 
-    return axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${Api_key}&language=en-US&sort_by=${typemove}&include_adult=false&include_video=false&page=1&with_genres=${GenresId}`)
+    return axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${Api_key}&language=en-US&sort_by=${typemove}&include_adult=false&include_video=false&page=1&with_genres=${GenresId}&primary_release_year=${year}`)
 }
 
 
