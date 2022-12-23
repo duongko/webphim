@@ -1,30 +1,67 @@
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { keywordaction } from "../../redux/action/KeyAction"
+
 const Header = (props) => {
+
+
+    const [keyword, setkeyword] = useState('')
+
+
+    const naviga = useNavigate()
+
+    const [show, setshow] = useState(false)
+    const [shownavbar, setshownavbar] = useState(false)
+
+
+    const dispatch = useDispatch()
+
+
+    const handleSearch = () => {
+
+        const action = keywordaction(keyword)
+        dispatch(action)
+
+
+
+
+
+        naviga("/search")
+        setshow(!show)
+        setkeyword('')
+
+    }
+
     return (
-        <header className="">
+        <header className={`${shownavbar == false ? '' : "active"}`}>
             <div className="navbar">
 
                 {/* <!--
           - menu button for small screen
         --> */}
-                <button className="navbar-menu-btn">
+                <button className={`navbar-menu-btn ${shownavbar == false ? '' : "active"} `}
+
+                    onClick={() => { setshownavbar(!shownavbar) }}
+                >
                     <span className="one"></span>
                     <span className="two"></span>
                     <span className="three"></span>
                 </button>
 
 
-                <a href="#" className="navbar-brand">
+                <Link to="/" className="navbar-brand">
                     <img src="../images/logo.png" alt="" />
-                </a>
+                </Link>
 
                 {/* <!--
           - navbar navigation
         --> */}
 
-                <nav className="">
+                <nav className={`${shownavbar == false ? '' : "active"}`}>
                     <ul className="navbar-nav">
 
-                        <li> <a href="#" className="navbar-link">Home</a> </li>
+                        <li> <Link to="/" className="navbar-link">Home</Link> </li>
                         <li> <a href="#category" className="navbar-link">Category</a> </li>
                         <li> <a href="#live" className="navbar-link  indicator">LIVE</a> </li>
 
@@ -37,16 +74,30 @@ const Header = (props) => {
 
                 <div className="navbar-actions">
 
-                    <form action="#" className="navbar-form">
-                        <input type="text" name="search" placeholder="I'm looking for..." className="navbar-form-search" />
+                    <form action="#" className={`navbar-form ${show == false ? '' : "active"}`}>
+                        <input
+                            type="text" name="search"
+                            placeholder="I'm looking for..."
+                            value={keyword}
+                            className="navbar-form-search"
 
-                        <button className="navbar-form-btn">
+                            onChange={(event) => { setkeyword(event.target.value) }}
+
+                        />
+
+                        <div className="navbar-form-btn"
+
+                            onClick={() => { handleSearch() }}
+                        >
                             <ion-icon name="search-outline"></ion-icon>
-                        </button>
+                        </div>
 
-                        <button className="navbar-form-close">
+                        <div className="navbar-form-close"
+                            onClick={() => setshow(!show)}
+
+                        >
                             <ion-icon name="close-circle-outline"></ion-icon>
-                        </button>
+                        </div>
                     </form>
 
 
@@ -54,7 +105,12 @@ const Header = (props) => {
             - search button for small screen
           --> */}
 
-                    <button className="navbar-search-btn">
+                    <button
+
+                        className="navbar-search-btn"
+
+                        onClick={() => setshow(!show)}
+                    >
                         <ion-icon name="search-outline"></ion-icon>
                     </button>
 

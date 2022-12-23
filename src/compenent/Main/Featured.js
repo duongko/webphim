@@ -1,3 +1,4 @@
+import { Pagination } from "@mui/material"
 import moment from "moment"
 import { useEffect, useState } from "react"
 import { Getmovefeatured } from "../../apiservice/api"
@@ -87,6 +88,8 @@ const Featured = (props) => {
                 }
 
             </div>
+
+
 
             {/* <!--
         - load more button

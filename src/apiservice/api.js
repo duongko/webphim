@@ -20,11 +20,25 @@ const Getmoveupcoming = () => {
     return axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${Api_key}&language=en-US&page=1`)
 }
 
+const Getsearch = (page, keyword) => {
+
+    return axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${Api_key}&language=en-US&page=${page}&include_adult=false&query=${keyword}`)
+}
+const Getgenres = () => {
+
+    return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${Api_key}&language=en-US`)
+}
+
+const GetDiscovery = (GenresId, typemove) => {
+
+    return axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${Api_key}&language=en-US&sort_by=${typemove}&include_adult=false&include_video=false&page=1&with_genres=${GenresId}`)
+}
 
 
 export {
 
 
-    Getmovepopular, GetGene, GetTVSHowpopular, Getmovefeatured, Getmoveupcoming
+    Getmovepopular, GetGene, GetTVSHowpopular, Getmovefeatured, Getmoveupcoming, Getsearch,
+    Getgenres, GetDiscovery
 }
 

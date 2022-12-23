@@ -1,10 +1,34 @@
 import { useEffect, useState } from "react"
-import { Getmovepopular } from "../../apiservice/api"
-import moment from 'moment'
-import Popular from "./Popular"
-import { Link, Outlet } from "react-router-dom"
+import { GetGene } from "../../apiservice/api"
+import { Link, Outlet, useNavigate } from "react-router-dom"
+import Genresmove from "./Genresmove"
 
 const MoveSection = (props) => {
+
+
+  const naviga = useNavigate()
+  const [Genres, setgenres] = useState([])
+  const [GenresId, setGenresId] = useState("")
+
+  const [typemove, settypemove] = useState("popularity.desc")
+
+  useEffect(() => {
+
+    Getgenerslist()
+
+  }, [GenresId])
+
+
+
+  const Getgenerslist = async () => {
+    let res = await GetGene()
+    setgenres(res.data.genres)
+  }
+
+
+
+  console.log("id", GenresId)
+  console.log("type:", typemove)
 
   return (
 
@@ -18,13 +42,35 @@ const MoveSection = (props) => {
 
         <div className="filter-dropdowns">
 
-          <select name="genre" className="genre">
+          <select name="genre" className="genre" onChange={(event) => { setGenresId(event.target.value) }}>
             <option value="all genres">All genres</option>
-            <option value="action">Action</option>
+
+            {Genres && Genres.length > 0
+
+
+              ? Genres.map((value, index) => {
+
+
+                return (
+
+                  <option value={value.id} key={value.id}
+
+
+
+                  >{value.name}</option>
+
+                )
+              })
+              :
+              <></>
+
+
+            }
+            {/* <option value="action">Action</option>
             <option value="adventure">Adventure</option>
             <option value="animal">Animal</option>
             <option value="animation">Animation</option>
-            <option value="biography">Biography</option>
+            <option value="biography">Biography</option> */}
           </select>
 
           <select name="year" className="year">
@@ -40,14 +86,38 @@ const MoveSection = (props) => {
 
         <div className="filter-radios">
 
-          <input type="radio" name="grade" id="featured" checked />
-          <Link to="featured"><label htmlFor="featured">Featured</label></Link>
 
-          <input type="radio" name="grade" id="popular" />
-          <Link to="popular"><label htmlFor="popular">Popular</label></Link>
+          <input type="radio" name="grade" id="popular"
+            value="popularity.desc"
+            onChange={(e) => { settypemove(e.target.value) }}
+            defaultChecked
+          />
+          <label htmlFor="popular"
+          // onClick={() => { naviga("popular") }}
 
-          <input type="radio" name="grade" id="newest" />
-          <Link to="upcoming"><label htmlFor="newest">Upcoming</label></Link>
+          >Popular</label>
+
+          <input type="radio" name="grade" id="featured"
+
+
+            value="vote_average.desc"
+            onChange={(e) => { settypemove(e.target.value) }}
+
+          />
+          <label htmlFor="featured"
+            onClick={() => { naviga("featured") }}
+
+          >Rating</label>
+
+
+
+          <input type="radio" name="grade" id="newest" value="release_date.desc"
+            onChange={(e) => { settypemove(e.target.value) }} />
+          <label htmlFor="newest"
+
+
+
+          >Upcoming</label>
 
           <div className="checked-radio-bg"></div>
 
@@ -57,7 +127,9 @@ const MoveSection = (props) => {
 
 
 
-      <Outlet />
+      {/* <Outlet /> */}
+
+      <Genresmove GenresId={GenresId} typemove={typemove} />
 
     </section>
   )

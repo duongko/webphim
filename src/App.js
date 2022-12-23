@@ -4,6 +4,10 @@ import './assets/css/main.css'
 import './assets/css/variable.css'
 import './assets/css/media_query.css'
 import './assets/css/reset.css'
+import './assets/css/notfoud.css'
+
+
+
 import MoveSection from "./compenent/Main/MoveSection"
 import Header from './compenent/Header/Header'
 import BannerSection from './compenent/Main/BannerSection';
@@ -15,6 +19,8 @@ import { Route, Router, Routes } from 'react-router-dom';
 import Featured from './compenent/Main/Featured';
 import Popular from './compenent/Main/Popular';
 import Upcoming from './compenent/Main/Upcoming';
+import Search from './compenent/Main/Search';
+import NotFound from './compenent/Main/NotFound';
 
 
 
@@ -34,14 +40,14 @@ const App = () => {
 
         <Routes>
           <Route path='/' element={<MoveSection />} >
-            <Route path='popular' element={<Popular />} />
-            <Route path='featured' element={<Featured />} />
-            <Route path='upcoming' element={<Upcoming />} />
 
-            <Route index element={<Featured />} />
+
           </Route>
 
-          {/* <Route index element={<MoveSection />} /> */}
+          <Route path='/search' element={<Search />}>
+
+
+          </Route>
 
 
 

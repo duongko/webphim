@@ -366,7 +366,7 @@ input~.checked-radio-bg {
    * variable for changing position and size
    * besed on radio checked 
    */
-  --width: 85px;
+  --width: 77px;
   --left: 5px;
 
   background: var(--oxford-blue);
@@ -378,14 +378,14 @@ input~.checked-radio-bg {
   border-radius: 10px;
 }
 
-#popular:checked~.checked-radio-bg {
-  --width: 73px;
-  --left: 90px;
+#featured:checked~.checked-radio-bg {
+  --width: 55px;
+  --left: 80px;
 }
 
 #newest:checked~.checked-radio-bg {
   --width: 81px;
-  --left: 163px;
+  --left: 138px;
 }
 
 
@@ -397,7 +397,7 @@ input~.checked-radio-bg {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .movie-card {
@@ -420,6 +420,8 @@ input~.checked-radio-bg {
 .movie-card:hover .card-img {
   transform: scale(1.1);
 }
+
+
 
 .movie-card .card-overlay {
   position: absolute;
