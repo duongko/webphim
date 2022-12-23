@@ -1,3 +1,4 @@
+import moment from "moment"
 import { useEffect, useState } from "react"
 import { GetDiscovery } from "../../apiservice/api"
 
@@ -34,9 +35,10 @@ const Genresmove = (props) => {
 
                 {Move && Move.length > 0
                     ? Move.slice(0, 18).map((value, index) => {
+                        let date = moment(value.release_date).year()
 
                         if (value.poster_path != null)
-                            // let date = moment(value.release_date).year()
+
 
                             return (
                                 <div className="movie-card" key={index}>
@@ -68,8 +70,8 @@ const Genresmove = (props) => {
                                         <h3 className="card-title">{value.title}</h3>
 
                                         <div className="card-info">
-                                            <span className="genre">Action/Comedy</span>
-                                            <span className="year"></span>
+                                            <span className="genre">MOVE</span>
+                                            <span className="year">  {date}</span>
                                         </div>
                                     </div>
 

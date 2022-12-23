@@ -1,3 +1,4 @@
+import moment from "moment/moment"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +12,7 @@ const Search = (props) => {
     const keymove = useSelector(state => state.keysearch.keyword)
     const keyendmove = keymove[keymove.length - 1]
     const [searchmove, setsearchmove] = useState([])
+
 
     const naviga = useNavigate()
 
@@ -73,11 +75,14 @@ const Search = (props) => {
                         ? searchmove.map((value, index) => {
 
 
+
+
+
+
+                            let date = moment(value.release_date).year()
+
+
                             if (value.poster_path != null || value.backdrop_path != null)
-
-
-
-                                // let date = moment(value.release_date).year()
 
                                 return (
                                     <div className="movie-card" key={index}>
@@ -111,8 +116,8 @@ const Search = (props) => {
                                             <h3 className="card-title">{value.title || value.name}</h3>
 
                                             <div className="card-info">
-                                                <span className="genre">Action/Comedy</span>
-                                                <span className="year"></span>
+                                                <span className="genre">move</span>
+                                                <span className="year">{date}</span>
                                             </div>
                                         </div>
 

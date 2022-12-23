@@ -8,7 +8,7 @@ const MoveSection = (props) => {
 
   const naviga = useNavigate()
   const [Genres, setgenres] = useState([])
-  const [GenresId, setGenresId] = useState("")
+  const [GenresId, setGenresId] = useState("28")
 
   const [typemove, settypemove] = useState("popularity.desc")
 
@@ -43,7 +43,7 @@ const MoveSection = (props) => {
         <div className="filter-dropdowns">
 
           <select name="genre" className="genre" onChange={(event) => { setGenresId(event.target.value) }}>
-            <option value="all genres">All genres</option>
+            {/* <option value="all genres">All genres</option> */}
 
             {Genres && Genres.length > 0
 
@@ -66,11 +66,7 @@ const MoveSection = (props) => {
 
 
             }
-            {/* <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="animal">Animal</option>
-            <option value="animation">Animation</option>
-            <option value="biography">Biography</option> */}
+
           </select>
 
           <select name="year" className="year">
@@ -93,7 +89,7 @@ const MoveSection = (props) => {
             defaultChecked
           />
           <label htmlFor="popular"
-          // onClick={() => { naviga("popular") }}
+
 
           >Popular</label>
 
@@ -105,7 +101,7 @@ const MoveSection = (props) => {
 
           />
           <label htmlFor="featured"
-            onClick={() => { naviga("featured") }}
+
 
           >Rating</label>
 

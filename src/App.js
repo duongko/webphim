@@ -14,11 +14,8 @@ import BannerSection from './compenent/Main/BannerSection';
 import CategorySection from './compenent/Main/CategorySection';
 import LiveSection from './compenent/Main/LiveSection';
 import Footer from './compenent/Footer/Footer';
-import { Getmovepopular } from './apiservice/api';
+
 import { Route, Router, Routes } from 'react-router-dom';
-import Featured from './compenent/Main/Featured';
-import Popular from './compenent/Main/Popular';
-import Upcoming from './compenent/Main/Upcoming';
 import Search from './compenent/Main/Search';
 import NotFound from './compenent/Main/NotFound';
 
@@ -40,6 +37,7 @@ const App = () => {
 
         <Routes>
           <Route path='/' element={<MoveSection />} >
+
 
 
           </Route>

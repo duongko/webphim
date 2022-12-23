@@ -503,6 +503,8 @@ input~.checked-radio-bg {
   display: flex;
   font-size: var(--fs-x-sm);
   font-weight: var(--fw-5);
+  text-align: center;
+  margin-left: 42px;
 }
 
 .movie-card .genre {
