@@ -5,8 +5,7 @@ import './assets/css/variable.css'
 import './assets/css/media_query.css'
 import './assets/css/reset.css'
 import './assets/css/notfoud.css'
-
-
+import './assets/css/detail.css'
 
 import MoveSection from "./compenent/Main/MoveSection"
 import Header from './compenent/Header/Header'
@@ -18,10 +17,14 @@ import Footer from './compenent/Footer/Footer';
 import { Route, Router, Routes } from 'react-router-dom';
 import Search from './compenent/Main/Search';
 import NotFound from './compenent/Main/NotFound';
+import Detailmove from './compenent/Main/Detail-move/Detailmove';
+import { useState } from 'react';
 
 
 
 const App = () => {
+
+  const [infomove, setinfomove] = useState([])
 
   return (
     <div className="App container">
@@ -30,27 +33,30 @@ const App = () => {
 
       {/* //............MAIN................ */}
       <main>
-        {/* BANNER SECTION */}
 
-        <BannerSection />
+        <Routes>
+
+          <Route path='/' element={<BannerSection />} />
+          <Route path='/detail-move' element={<Detailmove infomove={infomove} />} />
+        </Routes>
+
+
 
 
         <Routes>
-          <Route path='/' element={<MoveSection />} >
+
+          <Route path='/' element={
 
 
+            <MoveSection infomove={infomove} setinfomove={setinfomove} />}
 
-          </Route>
-
-          <Route path='/search' element={<Search />}>
-
-
-          </Route>
-
+          />
+          <Route path='/search' element={<Search />} />
+          {/* <Route path='/detail-move' element={<Detailmove infomove={infomove} />} /> */}
+          {/* <Route path='*' element={<NotFound />} /> */}
 
 
         </Routes>
-        {/* <!-- #MOVIES SECTIOn--> */}
 
 
         {/* <!-- #CATEGORY SECTIOn --> */}
@@ -58,6 +64,8 @@ const App = () => {
         {/* <!--- #LIVE SECTION --> */}
         <LiveSection />
       </main>
+
+
       {/* <!--- FOOTER SECTION--> */}
       <Footer />
 

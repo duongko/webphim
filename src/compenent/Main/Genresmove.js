@@ -1,11 +1,23 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
 import { GetDiscovery } from "../../apiservice/api"
+import movieTrailer from 'movie-trailer'
+import { useNavigate } from "react-router-dom"
 
 const Genresmove = (props) => {
-    const { GenresId, typemove, year } = props
 
-    const [Move, setmove] = useState()
+    const naviga = useNavigate()
+    const { GenresId, typemove, year,
+        Move, setmove,
+        infomove, setinfomove
+
+    } = props
+    const [moviestrailer, setMoviestralier] = useState([])
+
+
+
+
+
 
 
     useEffect(() => {
@@ -15,7 +27,17 @@ const Genresmove = (props) => {
 
     }, [GenresId, typemove, year])
 
+    const handleClickmove = (idmove, namemove, poster, backdrop_path, date, overview) => {
 
+
+        setinfomove([idmove, namemove, poster, backdrop_path, date, overview])
+
+
+        naviga("/detail-move")
+
+
+
+    }
 
 
 
@@ -37,14 +59,27 @@ const Genresmove = (props) => {
                     ? Move.slice(0, 18).map((value, index) => {
                         let date = moment(value.release_date).year()
 
+
+
                         if (value.poster_path != null)
 
 
                             return (
-                                <div className="movie-card" key={index}>
+                                <div className="movie-card" key={index}
+
+                                    onClick={() => handleClickmove(value.id, value.title, value.poster_path, value.backdrop_path, date, value.overview)}
+
+                                >
 
                                     <div className="card-head">
-                                        <img src={`https://image.tmdb.org/t/p/w342${value.poster_path || value.backdrop_path}`} alt="" className="card-img" />
+                                        <img
+
+
+                                            src={`https://image.tmdb.org/t/p/w342${value.poster_path || value.backdrop_path}`} alt=""
+                                            className="card-img"
+
+
+                                        />
 
 
 

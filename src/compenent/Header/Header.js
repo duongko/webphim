@@ -7,26 +7,14 @@ const Header = (props) => {
 
 
     const [keyword, setkeyword] = useState('')
-
-
     const naviga = useNavigate()
-
     const [show, setshow] = useState(false)
     const [shownavbar, setshownavbar] = useState(false)
-
-
     const dispatch = useDispatch()
-
-
     const handleSearch = () => {
 
         const action = keywordaction(keyword)
         dispatch(action)
-
-
-
-
-
         naviga("/search")
         setshow(!show)
         setkeyword('')

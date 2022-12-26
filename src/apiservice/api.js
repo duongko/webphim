@@ -27,6 +27,13 @@ const GetDiscovery = (GenresId, typemove, year) => {
 }
 
 
+const GetMoveDetail = (id) => {
+
+
+    return axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=a8a6fa2f944128e9712135bc3ca000b1`)
+}
+
+
 export {
 
 

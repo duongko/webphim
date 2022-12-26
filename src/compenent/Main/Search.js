@@ -59,10 +59,7 @@ const Search = (props) => {
                         Result Found: "{keyendmove}""
                     </div>
 
-                    <div className="filter-radios">
 
-
-                    </div>
 
                 </div>
 

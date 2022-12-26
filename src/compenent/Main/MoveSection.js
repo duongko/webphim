@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 import { GetGene } from "../../apiservice/api"
 import { Link, Outlet, useNavigate } from "react-router-dom"
 import Genresmove from "./Genresmove"
+import movieTrailer from "movie-trailer"
+import YouTube from "react-youtube"
 
 const MoveSection = (props) => {
+
+  const { moveid, setmoveid, infomove, setinfomove } = props
 
 
   const naviga = useNavigate()
@@ -11,12 +15,13 @@ const MoveSection = (props) => {
   const [GenresId, setGenresId] = useState("28")
 
   const [typemove, settypemove] = useState("popularity.desc")
-
-
+  const [Move, setmove] = useState([])
 
   const time = new Date()
   console.log("time:", time.getFullYear())
   const [year, setyear] = useState(`${time.getFullYear()}`)
+
+
 
   useEffect(() => {
 
@@ -30,6 +35,8 @@ const MoveSection = (props) => {
     let res = await GetGene()
     setgenres(res.data.genres)
   }
+
+
 
 
 
@@ -128,7 +135,24 @@ const MoveSection = (props) => {
 
       {/* <Outlet /> */}
 
-      <Genresmove GenresId={GenresId} typemove={typemove} year={year} />
+      <Genresmove
+        GenresId={GenresId}
+        typemove={typemove}
+        year={year}
+        Move={Move}
+        setmove={setmove}
+
+
+        infomove={infomove}
+        setinfomove={setinfomove}
+
+
+      // trailerUrl={trailerUrl}
+      // setTrailerUrl={setTrailerUrl}
+
+
+      />
+      {/* {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />} */}
 
     </section>
   )
