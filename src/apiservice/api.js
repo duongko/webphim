@@ -33,11 +33,21 @@ const GetMoveDetail = (id) => {
     return axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=a8a6fa2f944128e9712135bc3ca000b1`)
 }
 
+const GetpageDetail = (id, media_type) => {
+    return axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=${Api_key}`)
+
+}
+
+const Getsesion = (id, ss) => {
+
+    return axios.get(`https://api.themoviedb.org/3/tv/${id}/season/${ss}?api_key=${Api_key}&language=en-US`)
+}
 
 export {
 
 
     GetGene, GetTVSHowpopular, Getsearch,
-    Getgenres, GetDiscovery
+    Getgenres, GetDiscovery, GetMoveDetail,
+    GetpageDetail, Getsesion
 }
 

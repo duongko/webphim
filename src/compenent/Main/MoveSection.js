@@ -147,12 +147,10 @@ const MoveSection = (props) => {
         setinfomove={setinfomove}
 
 
-      // trailerUrl={trailerUrl}
-      // setTrailerUrl={setTrailerUrl}
 
 
       />
-      {/* {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />} */}
+
 
     </section>
   )

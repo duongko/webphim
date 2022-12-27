@@ -21,6 +21,11 @@ const Header = (props) => {
 
     }
 
+    const handleclickhome = () => {
+        setshownavbar(!shownavbar)
+        naviga('/')
+    }
+
     return (
         <header className={`${shownavbar == false ? '' : "active"}`}>
             <div className="navbar">
@@ -49,7 +54,7 @@ const Header = (props) => {
                 <nav className={`${shownavbar == false ? '' : "active"}`}>
                     <ul className="navbar-nav">
 
-                        <li> <Link to="/" className="navbar-link">Home</Link> </li>
+                        <li> <span className="navbar-link" onClick={() => handleclickhome()}>Home</span> </li>
                         <li> <a href="#category" className="navbar-link">Category</a> </li>
                         <li> <a href="#live" className="navbar-link  indicator">LIVE</a> </li>
 

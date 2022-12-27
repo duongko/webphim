@@ -8,16 +8,16 @@ import CustomPagination from "../pagination/CustomPagination"
 
 const Search = (props) => {
 
-
+    const { setinfomove } = props
+    const naviga = useNavigate()
     const keymove = useSelector(state => state.keysearch.keyword)
     const keyendmove = keymove[keymove.length - 1]
     const [searchmove, setsearchmove] = useState([])
-
-
-    const naviga = useNavigate()
-
     const [page, setpage] = useState(1)
     const [numOfPages, setNumOfPages] = useState();
+
+
+
 
     useEffect(() => {
 
@@ -27,7 +27,7 @@ const Search = (props) => {
     const Getsearchmove = async () => {
 
         let res = await Getsearch(page, keyendmove)
-        console.log("res", res.data)
+        console.log("Search la :", res.data)
 
         if (res.data.results && res.data.results.length > 0) {
 
@@ -35,11 +35,22 @@ const Search = (props) => {
             setNumOfPages(res.data.total_pages);
         } else {
 
-            naviga('*')
+            naviga('notfound')
 
         }
     }
 
+    const handleClickmove = (idmove, type) => {
+
+
+        setinfomove([idmove, type])
+
+
+        naviga("/detail-move")
+
+
+
+    }
 
 
     return (
@@ -82,7 +93,11 @@ const Search = (props) => {
                             if (value.poster_path != null || value.backdrop_path != null)
 
                                 return (
-                                    <div className="movie-card" key={index}>
+                                    <div className="movie-card" key={index}
+
+                                        onClick={() => handleClickmove(value.id, value.media_type)}
+
+                                    >
 
 
 
@@ -113,7 +128,7 @@ const Search = (props) => {
                                             <h3 className="card-title">{value.title || value.name}</h3>
 
                                             <div className="card-info">
-                                                <span className="genre">move</span>
+                                                <span className="genre">{value.media_type}</span>
                                                 <span className="year">{date}</span>
                                             </div>
                                         </div>

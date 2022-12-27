@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { GetTVSHowpopular } from "../../apiservice/api"
 
 const LiveSection = (props) => {
 
 
+    const naviga = useNavigate()
+    const { setinfomove } = props
+
+
     const [TVshow, setTVshow] = useState([])
+
+    const type = "tv"
 
     useEffect(() => {
 
@@ -21,6 +28,19 @@ const LiveSection = (props) => {
         setTVshow(res.data.results)
 
     }
+
+    const handleClickmove = (idmove, type) => {
+
+
+        setinfomove([idmove, type])
+
+
+        naviga("/detail-move")
+
+
+
+    }
+
 
 
 
@@ -40,7 +60,11 @@ const LiveSection = (props) => {
 
                             return (
 
-                                <div className="live-card" key={index}>
+                                <div className="live-card" key={index}
+
+
+                                    onClick={() => handleClickmove(value.id, type)}
+                                >
 
                                     <div className="card-head">
                                         <img src={`https://image.tmdb.org/t/p/w342${value.backdrop_path}`} alt="" className="card-img" />

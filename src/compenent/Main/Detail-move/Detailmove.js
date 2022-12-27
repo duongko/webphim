@@ -1,11 +1,58 @@
-import React from 'react';
-import { Player } from 'video-react';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+
 import "../../../../node_modules/video-react/dist/video-react.css";
+import { GetpageDetail, Getsesion } from '../../../apiservice/api';
 
 
 
 const Detailmove = (props) => {
-    const { moveid, infomove } = props
+    const { infomove } = props
+
+    const [moveInfo, setmoveInfo] = useState([])
+
+    const [section, setsection] = useState(1)
+    const [detailsection, setdetailsection] = useState([])
+    const [esp, setesp] = useState(1)
+
+    let date = moment(moveInfo.first_air_date).year()
+
+
+
+    useEffect(() => {
+
+
+        Getinfomove()
+
+        GetsesionTV()
+
+
+    }, [infomove[0], infomove[1]])
+
+
+
+
+
+    const Getinfomove = async () => {
+        let res = await GetpageDetail(infomove[0], infomove[1])
+
+
+        console.log("get detail:", res)
+
+
+        setmoveInfo(res.data)
+    }
+
+
+    const GetsesionTV = async () => {
+        let res = await Getsesion(infomove[0], section)
+
+
+        console.log("get session:", res)
+
+
+        setdetailsection(res.data.episodes)
+    }
 
 
 
@@ -20,25 +67,14 @@ const Detailmove = (props) => {
 
 
 
-                <section className="movie-detail"
-                // style={{
+                <section className="movie-detail">
 
 
-                //     "background": `url(https://image.tmdb.org/t/p/w342${infomove[3]}) no-repeat`,
-                //     'background-size': 'cover',
-                //     'background-position': 'center',
-                //     'padding-top': '160px',
-                //     'padding-bottom': '100px'
-
-                // }}
-                >
-
-                    {/* <div className='background-che'></div> */}
                     <div className="container">
 
                         <figure className="movie-detail-banner">
 
-                            <img src={`https://image.tmdb.org/t/p/w342${infomove[2]}`} alt="Free guy movie poster" />
+                            <img src={`https://image.tmdb.org/t/p/w342${moveInfo.poster_path || moveInfo.backdrop_path}`} alt={moveInfo.name} />
 
                             <button className="play-btn">
                                 <ion-icon name="play-circle-outline"></ion-icon>
@@ -51,7 +87,7 @@ const Detailmove = (props) => {
                             <p className="detail-subtitle">New Episodes</p>
 
                             <h1 className="h1 detail-title">
-                                {infomove[1]}
+                                {moveInfo.name}
                             </h1>
 
                             <div className="meta-wrapper">
@@ -63,13 +99,24 @@ const Detailmove = (props) => {
                                 </div>
 
                                 <div className="ganre-wrapper">
-                                    <a href="#">Comedy,</a>
 
-                                    <a href="#">Action,</a>
 
-                                    <a href="#">Adventure,</a>
+                                    {moveInfo.genres && moveInfo.genres.length > 0
 
-                                    <a href="#">Science Fiction</a>
+                                        ? moveInfo.genres.map((genres, i) => {
+
+                                            return (
+                                                <span key={i}>{genres.name}</span>
+
+                                            )
+                                        })
+
+
+
+                                        :
+                                        <></>
+                                    }
+
                                 </div>
 
                                 <div className="date-time">
@@ -77,13 +124,13 @@ const Detailmove = (props) => {
                                     <div>
                                         <ion-icon name="calendar-outline"></ion-icon>
 
-                                        <time datetime="2021">{infomove[4]}</time>
+                                        <time dateTime="2021">{date}</time>
                                     </div>
 
                                     <div>
                                         <ion-icon name="time-outline"></ion-icon>
 
-                                        <time datetime="PT115M">115 min</time>
+                                        <time dateTime="PT115M">{moveInfo.episode_run_time} min</time>
                                     </div>
 
                                 </div>
@@ -91,7 +138,7 @@ const Detailmove = (props) => {
                             </div>
 
                             <p className="storyline">
-                                {infomove[5]}
+                                {moveInfo.overview}
                             </p>
 
                             <div className="details-actions">
@@ -122,11 +169,6 @@ const Detailmove = (props) => {
 
                     </div>
 
-                    <div >
-                        <iframe width="330" height="200" src={`https://www.2embed.to/embed/tmdb/movie?id=${infomove[0]}&autoplay=1`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen > allow=”autoplay”</iframe>
-
-
-                    </div>
 
                 </section>
 
@@ -135,11 +177,117 @@ const Detailmove = (props) => {
 
 
 
-
-
-
-
             </article>
+
+
+
+
+
+
+
+
+
+            <div className="move-container" id="page-player">
+                <div className="box-player" id="box-player">
+                    <div id="player">
+
+
+                        <div id="player-area">
+
+                            {infomove[1] == "movie" ?
+                                <>
+
+                                    <iframe style={{ 'width': "100%", 'height': "100%" }} src={`https://www.2embed.to/embed/tmdb/movie?id=${infomove[0]}&autoplay=1`}
+                                        frameBorder="0" scrolling="no" allowFullScreen="" allow="autoplay"></iframe>
+
+                                    <div className="film-notes" style={{ "marginBottom": "20px", "border": "1px solid #B8B612", "padding": "5px" }}>Phim Xem
+                                        tốt nhất trên trình duyệt Safari,FireFox hoặc Chrome. Đừng tiếc 1 comment bên dưới để đánh giá
+                                        phim hoặc báo lỗi. Đổi server nếu lỗi, lag</div>
+
+                                </>
+                                :
+
+                                <>
+                                    <iframe style={{ 'width': "100%", 'height': "65%" }} src={`https://www.2embed.to/embed/tmdb/tv?id=${infomove[0]}&s=${section}&e=${esp}`}
+                                        frameBorder="0" scrolling="no" allowFullScreen="" allow="autoplay"></iframe>
+
+
+
+                                    <div className="film-note" style={{ "marginBottom": "20px", "border": "1px solid #B8B612", "padding": "5px" }}>Phim Xem
+                                        tốt nhất trên trình duyệt Safari,FireFox hoặc Chrome. Đừng tiếc 1 comment bên dưới để đánh giá
+                                        phim hoặc báo lỗi. Đổi server nếu lỗi, lag</div>
+
+                                    <div className="list-server" id="list-server">
+
+
+                                        <div className="server-group clearfix">
+                                            <span><i className="fa fa-database"></i> Danh sách tập Vietsub #1</span>
+                                            <ul className="episodes">
+
+
+                                                {
+
+
+                                                    detailsection && detailsection.length > 0
+                                                        ? detailsection.map((epi, index) => {
+
+                                                            return (
+                                                                <>
+
+                                                                    <li
+                                                                        onClick={() => setesp(epi.episode_number)}><a
+                                                                            title="Xem phim Cậu Út Nhà Tài Phiệt Tập 16" className="">{epi.episode_number}</a></li>
+
+
+
+
+                                                                </>
+                                                            )
+                                                        })
+
+                                                        :
+
+                                                        <></>
+                                                }
+
+
+
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
+                                </>
+
+
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
 
 
 

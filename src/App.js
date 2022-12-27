@@ -26,6 +26,8 @@ const App = () => {
 
   const [infomove, setinfomove] = useState([])
 
+
+
   return (
     <div className="App container">
 
@@ -46,23 +48,24 @@ const App = () => {
         <Routes>
 
           <Route path='/' element={
-
-
             <MoveSection infomove={infomove} setinfomove={setinfomove} />}
-
           />
-          <Route path='/search' element={<Search />} />
-          {/* <Route path='/detail-move' element={<Detailmove infomove={infomove} />} /> */}
-          {/* <Route path='*' element={<NotFound />} /> */}
+          <Route path='/search' element={<Search setinfomove={setinfomove} />} />
+
+          <Route path='search/notfound' element={<NotFound />} />
 
 
         </Routes>
 
 
         {/* <!-- #CATEGORY SECTIOn --> */}
-        <CategorySection />
+        <Routes>
+
+          <Route path='/' element={<CategorySection />} />
+
+        </Routes>
         {/* <!--- #LIVE SECTION --> */}
-        <LiveSection />
+        <LiveSection setinfomove={setinfomove} />
       </main>
 
 

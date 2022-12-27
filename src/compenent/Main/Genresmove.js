@@ -14,6 +14,7 @@ const Genresmove = (props) => {
     } = props
     const [moviestrailer, setMoviestralier] = useState([])
 
+    const type = "movie"
 
 
 
@@ -27,10 +28,11 @@ const Genresmove = (props) => {
 
     }, [GenresId, typemove, year])
 
-    const handleClickmove = (idmove, namemove, poster, backdrop_path, date, overview) => {
+
+    const handleClickmove = (idmove, type) => {
 
 
-        setinfomove([idmove, namemove, poster, backdrop_path, date, overview])
+        setinfomove([idmove, type])
 
 
         naviga("/detail-move")
@@ -38,7 +40,6 @@ const Genresmove = (props) => {
 
 
     }
-
 
 
     const GetGenresmove = async () => {
@@ -59,15 +60,13 @@ const Genresmove = (props) => {
                     ? Move.slice(0, 18).map((value, index) => {
                         let date = moment(value.release_date).year()
 
-
-
                         if (value.poster_path != null)
 
 
                             return (
                                 <div className="movie-card" key={index}
 
-                                    onClick={() => handleClickmove(value.id, value.title, value.poster_path, value.backdrop_path, date, value.overview)}
+                                    onClick={() => handleClickmove(value.id, type)}
 
                                 >
 

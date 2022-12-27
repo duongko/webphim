@@ -109,6 +109,24 @@ video {
     height: auto;
 }
 
+.episode {
+    display: flex;
+    width: 308px;
+    height: 24px;
+    margin-top: 66px;
+    margin-bottom: 10px;
+    padding: 0 8px;
+    text-align: center;
+
+}
+
+.episode-number {
+    cursor: pointer;
+    border: 1px solid;
+    margin-left: 10px;
+    width: 28px;
+    text-align: center;
+}
 
 
 
@@ -337,6 +355,103 @@ button {
     stroke: currentcolor;
 }
 
+/* ----------------------------------------MOVE CONTAINER------------------------------------ */
+
+
+
+.list-server {
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    color: #fff601;
+    max-width: 1000px;
+    margin: 10px auto;
+    background: #333;
+    padding-bottom: 5px;
+}
+
+ul,
+span,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.episodes {
+    margin: 20px -7px;
+    text-align: justify;
+    border-bottom: 1px solid #4c4c4c;
+    font-size: 0;
+    position: relative;
+
+}
+
+.episodes li a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 3px;
+    background: #3a3a3a;
+    padding: 7px;
+}
+
+.episodes li {
+    display: inline-block;
+    margin: 0 5px 15px;
+}
+
+.box-player {
+    position: relative;
+
+}
+
+.box-player {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+#player {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 140%;
+}
+
+#player-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+}
+
+#page-player {
+    padding: 10px;
+    margin: 0 auto 0;
+    background: #222;
+    overflow: hidden;
+    max-width: 90%;
+}
+
+.move-container {
+    margin: 0 auto;
+    width: auto;
+    padding: 0 60px;
+    max-width: 1500px;
+}
+
+
+
+
+
+
+/* 
+-----------------------------------------------------------------------------------------
+=========================================================================================== */
+
 
 
 
@@ -389,6 +504,11 @@ button {
     /**
      * MOVIE DETAIL
      */
+    .film-note {
+
+
+        display: none;
+    }
 
     .detail-subtitle {
         --fs-5: 22px;
@@ -409,6 +529,17 @@ button {
    */
 
 @media (min-width: 768px) {
+
+    #page-player {
+
+        max-width: 90%;
+    }
+
+    .film-note {
+
+
+        display: none;
+    }
 
     /**
      * CUSTOM PROPERTY
@@ -482,6 +613,17 @@ button {
         padding-inline: 15px;
     }
 
+    .film-note {
+
+
+        display: none;
+    }
+
+    #page-player {
+
+        max-width: 90%;
+    }
+
 
 
 
@@ -525,7 +667,15 @@ button {
 
     /**
      * CUSTOM PROPERTY
+
+
+
      */
+
+    #player {
+
+        padding-bottom: 100%;
+    }
 
     :root {
 
@@ -544,6 +694,14 @@ button {
      * REUSED STYLE
      */
 
+
+
+
+
+    #page-player {
+
+        max-width: 60%;
+    }
 
     .container {
         max-width: 1320px;
