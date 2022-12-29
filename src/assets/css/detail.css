@@ -417,7 +417,14 @@ div {
     width: 100%;
     height: 0;
     overflow: hidden;
-    padding-bottom: 140%;
+    padding-bottom: 190%;
+}
+
+.film-notes {
+    position: absolute;
+    height: 143px;
+    bottom: -34%;
+    font-size: 18px;
 }
 
 #player-area {

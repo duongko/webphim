@@ -17,6 +17,7 @@ const Header = (props) => {
         dispatch(action)
         naviga("/search")
         setshow(!show)
+        window.scroll(0, 0)
         setkeyword('')
 
     }
@@ -24,6 +25,7 @@ const Header = (props) => {
     const handleclickhome = () => {
         setshownavbar(!shownavbar)
         naviga('/')
+        window.scroll(0, 0)
     }
 
     return (

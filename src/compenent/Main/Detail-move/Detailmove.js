@@ -197,7 +197,7 @@ const Detailmove = (props) => {
                             {infomove[1] == "movie" ?
                                 <>
 
-                                    <iframe style={{ 'width': "100%", 'height': "100%" }} src={`https://www.2embed.to/embed/tmdb/movie?id=${infomove[0]}&autoplay=1`}
+                                    <iframe style={{ 'width': "100%", 'height': "82%" }} src={`https://www.2embed.to/embed/tmdb/movie?id=${infomove[0]}&autoplay=1`}
                                         frameBorder="0" scrolling="no" allowFullScreen="" allow="autoplay"></iframe>
 
                                     <div className="film-notes" style={{ "marginBottom": "20px", "border": "1px solid #B8B612", "padding": "5px" }}>Phim Xem

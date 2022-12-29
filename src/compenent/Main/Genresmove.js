@@ -36,6 +36,7 @@ const Genresmove = (props) => {
 
 
         naviga("/detail-move")
+        window.scroll(0, 0)
 
 
 

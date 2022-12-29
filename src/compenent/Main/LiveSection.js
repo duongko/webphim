@@ -35,7 +35,9 @@ const LiveSection = (props) => {
         setinfomove([idmove, type])
 
 
+
         naviga("/detail-move")
+        window.scroll(0, 0)
 
 
 
