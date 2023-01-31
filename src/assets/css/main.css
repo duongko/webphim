@@ -1,16 +1,4 @@
 /*-------------------------------------*\
-  #main.css
-\*-------------------------------------*/
-
-/**
- * copyright 2021 @codewithsadee 
- */
-
-
-
-
-
-/*-------------------------------------*\
   #VARIABLES
 \*-------------------------------------*/
 
@@ -128,10 +116,13 @@ nav {
 .navbar-link {
   font-size: var(--fs-sm);
   font-weight: var(--fw-5);
+
+  cursor: pointer;
 }
 
 .navbar-link:hover {
   color: var(--light-azure);
+  cursor: pointer;
 }
 
 /**

@@ -33,6 +33,14 @@ const Header = (props) => {
 
         toast.info("Đang cập nhập")
     }
+    const handlemove = () => {
+        window.scroll(0, 300)
+
+    }
+    const handleTV = () => {
+        window.scroll(0, 1760)
+
+    }
 
     return (
         <header className={`${shownavbar == false ? '' : "active"}`}>
@@ -63,8 +71,12 @@ const Header = (props) => {
                     <ul className="navbar-nav">
 
                         <li> <span className="navbar-link" onClick={() => handleclickhome()}>Home</span> </li>
-                        <li> <a href="#category" className="navbar-link">MOVE</a> </li>
-                        <li> <a href="#live" className="navbar-link  indicator">TV Show</a> </li>
+                        <li> <div className="navbar-link"
+                            onClick={() => { handlemove() }}
+                        >MOVE</div> </li>
+                        <li> <div className="navbar-link  indicator"
+                            onClick={() => { handleTV() }}
+                        >TV Show</div> </li>
 
                     </ul>
                 </nav>
