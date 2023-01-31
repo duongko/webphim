@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import { keywordaction } from "../../redux/action/KeyAction"
 
 const Header = (props) => {
@@ -26,6 +27,11 @@ const Header = (props) => {
         setshownavbar(!shownavbar)
         naviga('/')
         window.scroll(0, 0)
+    }
+
+    const handleSignup = () => {
+
+        toast.info("Đang cập nhập")
     }
 
     return (
@@ -57,8 +63,8 @@ const Header = (props) => {
                     <ul className="navbar-nav">
 
                         <li> <span className="navbar-link" onClick={() => handleclickhome()}>Home</span> </li>
-                        <li> <a href="#category" className="navbar-link">Category</a> </li>
-                        <li> <a href="#live" className="navbar-link  indicator">LIVE</a> </li>
+                        <li> <a href="#category" className="navbar-link">MOVE</a> </li>
+                        <li> <a href="#live" className="navbar-link  indicator">TV Show</a> </li>
 
                     </ul>
                 </nav>
@@ -109,10 +115,15 @@ const Header = (props) => {
                         <ion-icon name="search-outline"></ion-icon>
                     </button>
 
-                    <a href="#" className="navbar-signin">
+                    <div className="navbar-signin"
+
+                        onClick={() => { handleSignup() }}
+
+
+                    >
                         <span>Sign in</span>
                         <ion-icon name="log-in-outline"></ion-icon>
-                    </a>
+                    </div>
 
                 </div>
 

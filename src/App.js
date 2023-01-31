@@ -61,7 +61,7 @@ const App = () => {
         {/* <!-- #CATEGORY SECTIOn --> */}
         <Routes>
 
-          <Route path='/' element={<CategorySection />} />
+          {/* <Route path='/' element={<CategorySection />} /> */}
 
         </Routes>
         {/* <!--- #LIVE SECTION --> */}
